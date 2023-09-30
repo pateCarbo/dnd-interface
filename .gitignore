@@ -44,9 +44,17 @@
 
 # Composer PHAR
 /composer.phar
+/composeer.json
 
 # Backup entities generated with doctrine:generate:entities command
 **/Entity/*~
 
 # Embedded web-server pid file
 /.web-server-pid
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
+
+/node_modules/
+/package.json
