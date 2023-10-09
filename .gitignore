@@ -44,7 +44,7 @@
 
 # Composer PHAR
 /composer.phar
-/composeer.json
+/composer.json
 
 # Backup entities generated with doctrine:generate:entities command
 **/Entity/*~
