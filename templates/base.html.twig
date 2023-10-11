@@ -34,13 +34,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('vuexyTemplate/app-assets/css/pages/dashboard-ecommerce.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vuexyTemplate/app-assets/css/plugins/charts/chart-apex.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vuexyTemplate/app-assets/css/plugins/extensions/ext-component-toastr.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vuexyTemplate/app-assets/css/plugins/forms/form-validation.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('vuexyTemplate/app-assets/css/pages/authentication.css') }}">
     <!-- END: Page CSS-->
 
 </head>
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static   menu-collapsed" data-open="click" data-menu="vertical-menu-modern" data-col="">
+<body class="vertical-layout vertical-menu-modern {% if not app.user %} blank-page {% endif %} navbar-floating footer-static   menu-collapsed" data-open="click" data-menu="vertical-menu-modern" data-col="">
     {% block assets %}{% endblock %}
     {% block body %}{% endblock %}
     <!-- BEGIN: Vendor JS-->
