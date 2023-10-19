@@ -21,13 +21,8 @@ $(function () {
       3: { title: 'Inactive', class: 'badge-light-secondary' }
     };
 
-  var assetPath = '../../../app-assets/',
+  var assetPath = '',
     userView = 'app-user-view-account.html';
-
-  if ($('body').attr('data-framework') === 'laravel') {
-    assetPath = $('body').attr('data-asset-path');
-    userView = assetPath + 'app/user/view/account';
-  }
 
   select.each(function () {
     var $this = $(this);
@@ -44,7 +39,7 @@ $(function () {
   // Users List datatable
   if (dtUserTable.length) {
     dtUserTable.DataTable({
-      ajax: assetPath + 'data/user-list.json', // JSON file to add data
+      ajax: '', // JSON file to add data
       columns: [
         // columns according to JSON
         { data: '' },
@@ -197,6 +192,9 @@ $(function () {
         {
           extend: 'collection',
           className: 'btn btn-outline-secondary dropdown-toggle me-2',
+          attr: {
+            'hidden': 'hidden'
+          },
           text: feather.icons['external-link'].toSvg({ class: 'font-small-4 me-50' }) + 'Export',
           buttons: [
             {
@@ -239,7 +237,7 @@ $(function () {
           }
         },
         {
-          text: 'Add New User',
+          text: 'Nouveau Sort',
           className: 'add-new btn btn-primary',
           attr: {
             'data-bs-toggle': 'modal',
@@ -295,9 +293,9 @@ $(function () {
           .columns(2)
           .every(function () {
             var column = this;
-            var label = $('<label class="form-label" for="UserRole">Role</label>').appendTo('.user_role');
+            var label = $('<label class="form-label" for="SpellClass">Classe</label>').appendTo('.user_role');
             var select = $(
-              '<select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Select Role </option></select>'
+              '<select id="SpellClass" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Recherchez par classe </option></select>'
             )
               .appendTo('.user_role')
               .on('change', function () {
@@ -318,9 +316,9 @@ $(function () {
           .columns(3)
           .every(function () {
             var column = this;
-            var label = $('<label class="form-label" for="UserPlan">Plan</label>').appendTo('.user_plan');
+            var label = $('<label class="form-label" for="SpellLevel">Niveau</label>').appendTo('.user_plan');
             var select = $(
-              '<select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Select Plan </option></select>'
+              '<select id="SpellLevel" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Recherchez par niveau </option></select>'
             )
               .appendTo('.user_plan')
               .on('change', function () {
@@ -337,34 +335,7 @@ $(function () {
               });
           });
         // Adding status filter once table initialized
-        this.api()
-          .columns(5)
-          .every(function () {
-            var column = this;
-            var label = $('<label class="form-label" for="FilterTransaction">Status</label>').appendTo('.user_status');
-            var select = $(
-              '<select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx"><option value=""> Select Status </option></select>'
-            )
-              .appendTo('.user_status')
-              .on('change', function () {
-                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                column.search(val ? '^' + val + '$' : '', true, false).draw();
-              });
-
-            column
-              .data()
-              .unique()
-              .sort()
-              .each(function (d, j) {
-                select.append(
-                  '<option value="' +
-                    statusObj[d].title +
-                    '" class="text-capitalize">' +
-                    statusObj[d].title +
-                    '</option>'
-                );
-              });
-          });
+        
       }
     });
   }
